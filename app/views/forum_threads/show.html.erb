@@ -10,11 +10,13 @@
 				<%= @thread.content %>
 			</div>
 
-			<% if policy(@thread).edit? %>
-				<div class="action-edit">
-					<%= link_to 'Ubah', edit_forum_thread_path(@thread), class: 'btn' %>
-					<%= link_to 'Hapus', forum_thread_path(@thread), method: :delete, data: {confirm: 'Yakin dihapus?'}, class: 'btn' %>
-				</div>
+			<% if user_signed_in? %>
+				<% if policy(@thread).edit? %>
+					<div class="action-edit">
+						<%= link_to 'Ubah', edit_forum_thread_path(@thread), class: 'btn' %>
+						<%= link_to 'Hapus', forum_thread_path(@thread), method: :delete, data: {confirm: 'Yakin dihapus?'}, class: 'btn' %>
+					</div>
+				<% end %>
 			<% end %>
 		</div>
 
